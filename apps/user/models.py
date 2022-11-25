@@ -1,8 +1,4 @@
-from sqlalchemy.ext.declarative import declarative_base
-
 from apps import db
-
-Base = declarative_base()
 
 
 class User(db.Model):
@@ -25,9 +21,9 @@ class User(db.Model):
     password = db.Column(db.String(150), unique=True, nullable=False)
     phone = db.Column(db.String(15), nullable=True)
     usertype = db.Column(db.String(20), nullable=False)
-    manager = db.relationship("User", backref="user_manager", remote_side="User.id")
-    supervisor = db.relationship("User", backref="user_supervisor", remote_side="User.id")
-    ass_supervisor = db.relationship("User", backref="user_ass_supervisor", remote_side="User.id")
+    manager = db.Column(db.ForeignKey("users.id"), nullable=False)
+    supervisor = db.Column(db.ForeignKey("users.id"), nullable=False)
+    ass_supervisor = db.Column(db.ForeignKey("users.id"), nullable=False)
     is_active = db.Column(db.Boolean, default=True, nullable=False)
     is_verified = db.Column(db.Boolean, default=True, nullable=False)
 
