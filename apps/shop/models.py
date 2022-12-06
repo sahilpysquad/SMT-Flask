@@ -42,8 +42,8 @@ class ShopCategory(db.Model):
 
 shop_employee = db.Table(
     "shop_employee",
-    db.Column("employee_id", db.Integer, db.ForeignKey("user.id"), primary_key=True),
-    db.Column("shop_id", db.Integer, db.ForeignKey("shop.id"), primary_key=True),
+    db.Column("employee_id", db.Integer, db.ForeignKey("user.id", ondelete="cascade"), primary_key=True),
+    db.Column("shop_id", db.Integer, db.ForeignKey("shop.id", ondelete="cascade"), primary_key=True),
 )
 
 
@@ -57,7 +57,12 @@ class Shop(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(200), nullable=False)
     areazone_id = db.Column(db.Integer, db.ForeignKey(AreaZone.id), nullable=False)
-    owner_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=True)
+    owner_id = db.Column(db.Integer, db.ForeignKey("user.id", ondelete="cascade"), nullable=True)
+    owner = db.relationship("User", foreign_keys=[owner_id])
+
+    ass_supervisor_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=True)
+    ass_supervisor = db.relationship("User", foreign_keys=[ass_supervisor_id])
+
     status = db.Column(db.String(20), nullable=False)
     category_id = db.Column(db.Integer, db.ForeignKey(ShopCategory.id), nullable=False)
     created = db.Column(db.DateTime, nullable=False, server_default=func.now())

@@ -1,8 +1,8 @@
-from flask import request, redirect, render_template, Blueprint
+from flask import request, redirect, render_template, Blueprint, flash
 from flask.views import View
 from flask_login import login_required
 
-from apps import db
+from apps import db, login_user
 from apps.shop.forms import StateForm, CityForm, AreaZoneForm, ShopCategoryForm, ShopForm
 from apps.shop.models import State, City, AreaZone, ShopCategory, Shop
 from apps.user.models import User
@@ -88,6 +88,12 @@ class ShopView(CommonView, View):
         if request.method == "POST":
             data = request.form.to_dict()
             data.pop("csrf_token")
+            ass_supervisor_id = data.get("ass_supervisor_id")
+            shop_count = Shop.query.filter_by(ass_supervisor_id=int(ass_supervisor_id)).count()
+            print(shop_count)
+            if shop_count > 15:
+                flash("This assistant supervisor has 15 shop already. Please select other assistant supervisor.")
+                return render_template(self.template_name, shops=shops, form=form)
             owner = data.get("owner_id")
             data.pop("employees") if data.get("employees") else None
             if owner:
@@ -140,4 +146,5 @@ class ShopDeleteView(CommonView, View):
 
     def dispatch_request(self, shop_id):
         Shop.query.filter_by(id=shop_id).delete()
+        db.session.commit()
         return redirect("/shop/shop-list/")

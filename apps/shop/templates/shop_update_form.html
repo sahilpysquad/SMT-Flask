@@ -2,22 +2,24 @@
 {% block content %}
 <h1>Update Shop</h1>
 {% with messages = get_flashed_messages() %}
- {% if messages %}
-  <ul>
+{% if messages %}
+<ul>
   {% for message in messages %}
-    <li><h4>{{ message }}</h4></li>
+  <li>
+    <h4>{{ message }}</h4>
+  </li>
   {% endfor %}
-  </ul>
- {% endif %}
+</ul>
+{% endif %}
 {% endwith %}
-  <form method="post" action="{{ url_for('shop_update', shop_id=shop.id) }}">
-    {{ form.csrf_token }}
-    {{ form.name.label }}     {{ form.name(value=shop.name) }}<br><br>
-    {{ form.areazone_id.label }}     {{ form.areazone_id(value=shop.areazone.name) }}<br><br>
-    {{ form.owner_id.label }}     {{ form.owner_id }}<br><br>
-    {{ form.category_id.label }}     {{ form.category_id }}<br><br>
-    {{ form.employees.label }}     {{ form.employees(values=shop.employees) }}<br><br>
-    <input type="submit" value="Submit">
-  </form><br>
+<form method="post" action="{{ url_for('shop_update', shop_id=shop.id) }}">
+  {{ form.csrf_token }}
+  {{ form.name.label }} {{ form.name(value=shop.name) }}<br><br>
+  {{ form.areazone_id.label }} {{ form.areazone_id(value=shop.areazone.name) }}<br><br>
+  {{ form.owner_id.label }} {{ form.owner_id }}<br><br>
+  {{ form.category_id.label }} {{ form.category_id }}<br><br>
+  {{ form.employees.label }} {{ form.employees(values=shop.employees) }}<br><br>
+  <input type="submit" value="Submit">
+</form><br>
 <a href="{{ url_for('shop_list') }}"><button type="submit">Shop List</button></a>
 {% endblock %}

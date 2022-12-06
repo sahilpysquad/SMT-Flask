@@ -1,5 +1,6 @@
 import os
 
+import flask_login
 from flask import Flask
 from flask_login import LoginManager
 from flask_migrate import Migrate
@@ -18,10 +19,17 @@ manager = Manager(app)
 login_manager = LoginManager(app=app)
 login_manager.login_view = "user_login"
 
+login_user = flask_login.current_user
+
 
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
+
+
+@app.context_processor
+def common_context():
+    return {"user": login_user}
 
 
 with app.app_context():

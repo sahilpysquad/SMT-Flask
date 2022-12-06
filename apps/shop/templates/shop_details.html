@@ -2,13 +2,15 @@
 {% block content %}
 <h1>Shop Details</h1>
 {% with messages = get_flashed_messages() %}
- {% if messages %}
-  <ul>
+{% if messages %}
+<ul>
   {% for message in messages %}
-    <li><h4>{{ message }}</h4></li>
+  <li>
+    <h4>{{ message }}</h4>
+  </li>
   {% endfor %}
-  </ul>
- {% endif %}
+</ul>
+{% endif %}
 {% endwith %}
 <h3>Name : {{ shop.name }}</h3>
 <h3>{{ shop.category }}</h3>

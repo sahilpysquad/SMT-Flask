@@ -32,30 +32,44 @@ class AddUser(CommonView, View):
     def dispatch_request(self):
         form = UserForm()
         if request.method == "POST":
-            if form.is_submitted():
+            if form.validate_on_submit():
                 data = request.form.to_dict()
                 data.pop("csrf_token")
-                # usertype = data.get("usertype")
-                # if usertype == "manager":
-                #     data.pop("supervisor_id")
-                #     data.pop("ass_supervisor_id")
-                # elif usertype == "supervisor":
-                #     if not data.get("manager_id"):
-                #         flash("If you are supervisor then you must select manager.")
-                #     else:
-                #         data.pop("ass_supervisor_id")
-                # elif usertype == "ass_supervisor":
-                #     if not data.get("manager_id") or not data.get("supervisor_id"):
-                #         flash("Please choose manager and supervisor both.")
-                # elif usertype in ["cleaning_worker", "employee_worker", "shop_owner"]:
-                #     data.pop("supervisor_id")
-                #     data.pop("ass_supervisor_id")
-                #     data.pop("manager_id")
+                username = data.get("username")
+                user_obj = User.query.filter_by(username=username).first()
+                if user_obj:
+                    flash("Username is already exists.")
+                    return render_template(self.template_name, form=form)
+                email = data.get('email')
+                user_obj = User.query.filter_by(email=email).first()
+                if user_obj:
+                    flash("Email is already exists.")
+                    return render_template(self.template_name, form=form)
+                usertype = data.get("usertype")
+                if usertype == "manager":
+                    data.pop("supervisor_id")
+                    data.pop("ass_supervisor_id")
+                elif usertype == "supervisor":
+                    if not data.get("manager_id"):
+                        flash("If you are supervisor then you must select manager.")
+                        return render_template(self.template_name, form=form)
+                    else:
+                        data.pop("ass_supervisor_id")
+                elif usertype == "ass_supervisor":
+                    if not data.get("manager_id") or not data.get("supervisor_id"):
+                        flash("If you are Ass.Supervisor then you must select manager and supervisor both.")
+                        return render_template(self.template_name, form=form)
+                elif usertype in ["cleaning_worker", "employee_worker", "shop_owner"]:
+                    data.pop("supervisor_id")
+                    data.pop("ass_supervisor_id")
+                    data.pop("manager_id")
                 user_obj = User(**data)
                 user_obj.password = user_obj.set_password(user_obj.password)
                 db.session.add(user_obj)
                 db.session.commit()
-                return redirect("/user/user-list/")
+                return redirect("/user/login/")
+            else:
+                return render_template(self.template_name, form=form)
         return render_template(self.template_name, form=form)
 
 
@@ -92,3 +106,31 @@ class LogoutUser(CommonView, View):
     def dispatch_request(self):
         logout_user()
         return redirect("/user/login/")
+
+
+
+
+def user_data():
+    import random
+    USER_TYPE = User.USER_TYPE
+    objs = []
+    for i in range(4, 103):
+        data = {
+        "username": f"root{i}",
+            "first_name": f"root{i}",
+            "last_name": f"root{i}",
+            "email": f"root{i}@gmail.com",
+            "password": User().set_password(password="12345"),
+            "usertype": random.choice(list(dict(USER_TYPE).keys())),
+            "is_active": True,
+            "is_verified": True,
+        }
+        usertype = data.get("usertype")
+        if usertype == "ass_supervisor":
+            data.update({"manager_id": 126, "supervisor_id": 127})
+        if usertype == "supervisor":
+            data.update({"manager_id": 126})
+        u = User(**data)
+        objs.append(u)
+    db.session.add_all(objs)
+    db.session.commit()

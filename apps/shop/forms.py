@@ -29,11 +29,13 @@ class ShopCategoryForm(FlaskForm):
 class ShopForm(FlaskForm):
     AREA_ZONE_CHOICES = [(areazone.id, f"{areazone.name} ({areazone.city.name})") for areazone in AreaZone.query.all()]
     OWNER_CHOICES = [(owner.id, owner.username) for owner in User.query.filter_by(usertype="shop_owner")]
+    ASS_SUPERVISOR_CHOICES = [(ass_supervisor.id, ass_supervisor.username) for ass_supervisor in User.query.filter_by(usertype="ass_supervisor")]
     SHOP_CATEGORY_CHOICES = [(category.id, category.name) for category in ShopCategory.query.all()]
     EMPLOYEE_CHOICE = [(employee.id, employee.username) for employee in User.query.filter_by(usertype="employee_worker")]
 
     name = wtforms.StringField("Name", validators=[DataRequired()])
     areazone_id = wtforms.SelectField("Area Zone", validators=[DataRequired()], choices=AREA_ZONE_CHOICES)
     owner_id = wtforms.SelectField("Owner", validators=[DataRequired()], choices=OWNER_CHOICES)
+    ass_supervisor_id = wtforms.SelectField("Ass. Supervisor", validators=[DataRequired()], choices=ASS_SUPERVISOR_CHOICES)
     category_id = wtforms.SelectField("Shop Category", validators=[DataRequired()], choices=SHOP_CATEGORY_CHOICES)
     employees = wtforms.SelectMultipleField("Employee", choices=EMPLOYEE_CHOICE)

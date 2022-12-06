@@ -1,38 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{% block title %}Area Zones{% endblock %}</title>
-</head>
-
-<body>
+{% extends 'base.html' %}
+{% block content %}
   <h1>Area Zones</h1>
   {% with messages=get_flashed_messages() %}
   {% if messages %}{{ messages[0] }}{% endif %}
   {% endwith %}
   <form method="post" action="{{ url_for('area_zones') }}">
     {{ form.csrf_token }}
-    {{ form.name.label }}     {{ form.name }}
-    {{ form.city_id.label }}     {{ form.city_id }}
+    {{ form.name.label }} {{ form.name }}
+    {{ form.city_id.label }} {{ form.city_id }}
     <input type="submit" value="Submit">
   </form><br><br>
 
-<table>
-  <tr>
-    <th>No.</th>
-    <th>Name</th>
-    <th>State</th>
-  </tr>
-  {% for arezzone in areazones %}
-  <tr>
-    <td>{{ arezzone.id }}</td>
-    <td>{{ arezzone.name }}</td>
-    <td>{{ arezzone.city.name }}</td>
-  </tr>
-  {% endfor %}
-</table>
-</body>
-</html>
+  <table>
+    <tr>
+      <th>No.</th>
+      <th>Name</th>
+      <th>State</th>
+    </tr>
+    {% for arezzone in areazones %}
+    <tr>
+      <td>{{ arezzone.id }}</td>
+      <td>{{ arezzone.name }}</td>
+      <td>{{ arezzone.city.name }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+{% endblock %}
