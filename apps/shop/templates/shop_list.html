@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h1>Shops</h1>
+<a href="{{ url_for('shop_add') }}"><button type="submit">Add Shop</button></a>
+<table>
+  <tr>
+    <th>No.</th>
+    <th>Name</th>
+    <th>Actions</th>
+  </tr>
+  {% for shop in shops %}<br>
+  <tr>
+    <td>{{ shop.id }}</td>
+    <td>{{ shop.name }}</td>
+    <td><a href="{{ url_for('shop_detail', shop_id=shop.id) }}"><button type="submit">Details</button></a></td>
+    <td><a href="{{ url_for('shop_update', shop_id=shop.id) }}"><button type="submit">Update</button></a></td>
+    <td><a href="{{ url_for('shop_delete', shop_id=shop.id) }}"><button type="submit">Delete</button></a></td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

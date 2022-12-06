@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h1>Login</h1>
+  {% with messages=get_flashed_messages() %}
+  {% if messages %}{{ messages[0] }}{% endif %}
+  {% endwith %}
+  <form method="post" action="{{ url_for('user_login') }}">
+    {{ form.csrf_token }}
+    {{ form.username.label }}     {{ form.username }}<br><br>
+    {{ form.password.label }}     {{ form.password }}<br><br>
+    {{ form.remember_me.label }}     {{ form.remember_me }}<br><br>
+    <input type="submit" value="Submit">
+  </form><br><br>
+<a href="{{ url_for('user_add') }}"><button type="submit">Add User</button></a>
+{% endblock %}

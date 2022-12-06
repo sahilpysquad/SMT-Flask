@@ -1,23 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{% block title %}User List{% endblock %}</title>
-</head>
-
-<body>
+{% extends 'base.html' %}
+{% block content %}
   <h1>Add User</h1>
+  {% with messages = get_flashed_messages() %}
+ {% if messages %}
+  <ul>
+  {% for message in messages %}
+    <li><h4>{{ message }}</h4></li>
+  {% endfor %}
+  </ul>
+ {% endif %}
+{% endwith %}
   <form method="post" action="{{ url_for('user_add') }}">
     {{ form.csrf_token }}
     {{ form.username.label }}     {{ form.username }}<br><br>
     {{ form.first_name.label }}     {{ form.first_name }}<br><br>
     {{ form.last_name.label }}     {{ form.last_name }}<br><br>
     {{ form.email.label }}     {{ form.email }}<br><br>
+    {{ form.phone.label }}     {{ form.phone }}<br><br>
+    {{ form.usertype.label }}     {{ form.usertype }}<br><br>
+    {{ form.manager_id.label }}     {{ form.manager_id }}<br><br>
+    {{ form.supervisor_id.label }}     {{ form.supervisor_id }}<br><br>
+    {{ form.ass_supervisor_id.label }}     {{ form.ass_supervisor_id }}<br><br>
+    {{ form.password.label }}     {{ form.password }}<br><br>
     <input type="submit" value="Submit">
-  </form>
-</body>
-
-</html>
+  </form><br><br>
+{% endblock %}

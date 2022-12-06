@@ -1,11 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="ab625a81-b7d1-4821-b20d-f8bafe46a6bd" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/shop/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/shop/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/shop/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/shop/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/shop/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/shop/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/user/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/user/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/user/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/user/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/user/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/user/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/user/templates/user_add_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/user/templates/user_add_form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/user/templates/user_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/user/templates/user_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/user/url_routs.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/user/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/user/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirments.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirments.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/README" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/alembic.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/env.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/script.py.mako" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/versions/297383c812c7_.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,16 +40,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "/home/pys/Desktop/Sahil/python/flask/SMT/SMT/apps/shop/templates"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/apps/shop/templates" />
+      <recent name="$PROJECT_DIR$/apps/user/templates" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/apps/user/templates" />
+      <recent name="$PROJECT_DIR$/apps/user" />
+      <recent name="$PROJECT_DIR$/apps/shop/templates" />
+      <recent name="$PROJECT_DIR$/apps/shop" />
       <recent name="$PROJECT_DIR$/apps" />
-      <recent name="$PROJECT_DIR$/user" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
